@@ -2,6 +2,8 @@ require 'dotenv'
 Dotenv.load
 
 LIB_ROOT = File.dirname(__FILE__) + '/../lib'
+FODDER_ROOT = File.dirname(__FILE__) + '/fodder'
+
 require 'rspec/expectations'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

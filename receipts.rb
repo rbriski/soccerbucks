@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'json'
+require 'receipts/message'
 
 class Receipts < Sinatra::Base
   set :sessions, true
@@ -10,12 +11,6 @@ class Receipts < Sinatra::Base
 
   post '/in' do
     raw = request.env["rack.input"].read
-    puts raw
-    puts raw.class.name
-    puts JSON.parse(raw)
-  end
-
-  post '/in/:data' do
-    puts params[:data]
+    msg = Receipts::Message.new raw
   end
 end
