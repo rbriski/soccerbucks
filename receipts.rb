@@ -8,7 +8,8 @@ class Receipts < Sinatra::Base
   end
 
   post '/in' do
-    puts params.inspect
+    raw = request.env["rack.input"].read
+    puts raw
   end
 
   post '/in/:data' do
