@@ -1,4 +1,4 @@
-soccerbucks
-===========
+base.rb
+=======
 
-Receipts for SBYS
+A base setup for a ruby project.
