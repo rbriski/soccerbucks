@@ -10,4 +10,8 @@ class Receipts < Sinatra::Base
   post '/in' do
     puts params.inspect
   end
+
+  post '/in/:data' do
+    puts params[:data]
+  end
 end
