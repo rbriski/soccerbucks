@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'json'
 require 'persist_message'
 
-class Receipts < Sinatra::Base
+class Soccerbucks < Sinatra::Base
   set :sessions, true
 
   get '/' do
