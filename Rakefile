@@ -1,6 +1,3 @@
-require 'dotenv'
-Dotenv.load
-
 $:.unshift File.dirname(__FILE__) + "/lib"
 
 require 'rubygems'
