@@ -13,6 +13,7 @@ class Soccerbucks < Sinatra::Base
   post '/in' do
     raw = request.env["rack.input"].read
     msg = Receipts::Message.new(raw)
-    puts msg.inspect
+    puts msg.keys
+    puts msg.carrier
   end
 end
