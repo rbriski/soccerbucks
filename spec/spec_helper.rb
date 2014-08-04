@@ -5,6 +5,10 @@ LIB_ROOT = File.dirname(__FILE__) + '/../lib'
 FODDER_ROOT = File.dirname(__FILE__) + '/fodder'
 
 require 'rspec/expectations'
+require 'database_cleaner'
+require 'sequel'
+
+DB = Sequel.connect(ENV.fetch("DATABASE_URL_TEST"))
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -20,4 +24,14 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
