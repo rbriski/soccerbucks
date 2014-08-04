@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require 'json'
-require 'receipts/message'
+require 'persist_message'
 
 class Receipts < Sinatra::Base
   set :sessions, true
@@ -11,6 +11,6 @@ class Receipts < Sinatra::Base
 
   post '/in' do
     raw = request.env["rack.input"].read
-    msg = Receipts::Message.new raw
+    PersistMessage.save(raw)
   end
 end
