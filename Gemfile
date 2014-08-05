@@ -6,6 +6,7 @@ source "https://rubygems.org"
 gem "sinatra"
 gem "pg"
 gem "sequel"
+gem "newrelic_rpm"
 
 group :development do
   gem 'rspec'
