@@ -13,6 +13,8 @@ class Soccerbucks < Sinatra::Base
 
   post '/in' do
     raw = request.env["rack.input"].read
+    puts "Received: #{raw}"
+
     msg = PersistMessage.save(raw)
 
     if msg.message.downcase.include?('practice')
