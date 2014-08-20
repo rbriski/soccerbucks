@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'json'
 require 'persist_message'
+require 'mogreet'
 
 # heroku pg:psql -c "copy (select id, path as image_url from images) to stdout csv header"
 class Soccerbucks < Sinatra::Base
@@ -12,7 +13,17 @@ class Soccerbucks < Sinatra::Base
 
   post '/in' do
     raw = request.env["rack.input"].read
-    PersistMessage.save(raw)
+    msg = PersistMessage.save(raw)
+
+    if msg.message.downcase.include?('practice')
+      @api = Mogreet.new(msg.msisdn)
+      puts @api.send_message('this thursday')
+    end
+
+    if msg.message.downcase.include?('game')
+      @api = Mogreet.new(msg.msisdn)
+      puts @api.send_message('next game')
+    end
 
     200
   end

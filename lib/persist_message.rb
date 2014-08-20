@@ -17,6 +17,8 @@ class PersistMessage
     msg.images.each do | img |
       saved_msg.add_image(Models::Image.new(:path => img['image']))
     end
+
+    saved_msg
   end
 
 end

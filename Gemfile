@@ -7,6 +7,8 @@ gem "sinatra"
 gem "pg"
 gem "sequel"
 gem "newrelic_rpm"
+gem "addressable"
+gem "httparty"
 
 group :development do
   gem 'rspec'
