@@ -20,7 +20,13 @@ class Soccerbucks < Sinatra::Base
 
     if msg.message.downcase.include?('practice')
       api = Mogreet.new(msg.msisdn)
-      puts api.send_message('this thursday')
+
+      date  = Date.parse("Thursday")
+      delta = date > Date.today ? 0 : 7
+      dt = date + delta
+      next_practice_str = "#{dt.strftime("%a %m/%d")} @ 5:00PM"
+
+      puts api.send_message(next_practice_str)
     end
 
     if msg.message.downcase.include?('game')
