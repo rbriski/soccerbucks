@@ -18,13 +18,16 @@ class Soccerbucks < Sinatra::Base
     msg = PersistMessage.save(raw)
 
     if msg.message.downcase.include?('practice')
-      @api = Mogreet.new(msg.msisdn)
-      puts @api.send_message('this thursday')
+      api = Mogreet.new(msg.msisdn)
+      puts api.send_message('this thursday')
     end
 
     if msg.message.downcase.include?('game')
-      @api = Mogreet.new(msg.msisdn)
-      puts @api.send_message('next game')
+      api = Mogreet.new(msg.msisdn)
+
+      game = Models::Game.next
+      next_game_str = "#{game.scheduled_at.strftime('%a %m/%d @ %H:%M%P')} against #{game.opponent}"
+      puts api.send_message(next_game_str)
     end
 
     200
